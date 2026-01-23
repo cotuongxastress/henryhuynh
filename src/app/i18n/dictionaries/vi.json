@@ -1,0 +1,61 @@
+{
+  "common": {
+    "appName": "Tìm Ngách YouTube",
+    "search": "Tìm kiếm",
+    "suggest": "Gợi ý",
+    "trends": "Xu hướng",
+    "outline": "Dàn ý Video",
+    "language": "Ngôn ngữ"
+  },
+  "home": {
+    "title": "Tìm Ngách YouTube Của Bạn",
+    "subtitle": "Khám phá chủ đề thịnh hành, nhận gợi ý từ AI và tạo dàn ý video",
+    "searchPlaceholder": "Nhập từ khóa để tìm ngách",
+    "orText": "hoặc",
+    "suggestButton": "Nhận Gợi Ý Từ AI",
+    "trendingTopics": "Chủ Đề Thịnh Hành",
+    "recentSearches": "Tìm Kiếm Gần Đây"
+  },
+  "search": {
+    "title": "Kết Quả Tìm Kiếm",
+    "noResults": "Không tìm thấy kết quả",
+    "searchAgain": "Thử từ khóa khác",
+    "relatedTopics": "Chủ Đề Liên Quan",
+    "createOutline": "Tạo Dàn Ý Video"
+  },
+  "suggest": {
+    "title": "Gợi Ý Từ AI",
+    "loading": "Đang tạo gợi ý...",
+    "categoryLabel": "Chọn danh mục",
+    "generateButton": "Tạo Gợi Ý",
+    "regenerateButton": "Tạo Lại",
+    "saveButton": "Lưu",
+    "exploreButton": "Khám Phá Xu Hướng"
+  },
+  "trends": {
+    "title": "Chủ Đề Thịnh Hành",
+    "googleTrends": "Xu Hướng Google",
+    "youtubeTrends": "Xu Hướng YouTube",
+    "dailyTrends": "Xu Hướng Hàng Ngày",
+    "weeklyTrends": "Xu Hướng Hàng Tuần",
+    "monthlyTrends": "Xu Hướng Hàng Tháng",
+    "relatedQueries": "Truy Vấn Liên Quan",
+    "risingTopics": "Chủ Đề Đang Lên"
+  },
+  "outline": {
+    "title": "Công Cụ Tạo Dàn Ý Video",
+    "durationLabel": "Thời Lượng Video",
+    "languageLabel": "Ngôn Ngữ Nội Dung",
+    "shortOption": "Ngắn (< 5 phút)",
+    "mediumOption": "Trung bình (5-15 phút)",
+    "longOption": "Dài (> 15 phút)",
+    "topicLabel": "Chủ Đề",
+    "generateButton": "Tạo Dàn Ý",
+    "regenerateButton": "Tạo Lại",
+    "saveButton": "Lưu Dàn Ý",
+    "copyButton": "Sao Chép",
+    "introduction": "Giới Thiệu",
+    "mainContent": "Nội Dung Chính",
+    "conclusion": "Kết Luận"
+  }
+}
