@@ -1,14 +1,17 @@
 import { NextRequest, NextResponse } from 'next/server';
 import OpenAI from 'openai';
 
-// Initialize OpenAI client
-const openai = new OpenAI({
-  apiKey: process.env.OPENAI_API_KEY // Will be configured in environment variables
-});
+// Create the OpenAI client lazily, inside the request handler, so that
+// importing this route at build time does not require OPENAI_API_KEY.
+function getOpenAIClient() {
+  return new OpenAI({
+    apiKey: process.env.OPENAI_API_KEY, // Configured via environment variables
+  });
+}
 
 export async function POST(request: NextRequest) {
   try {
-    const body = await request.json();
+    const body = (await request.json()) as { topic?: string; duration?: string; language?: string };
     const { topic, duration, language } = body;
     
     if (!topic) {
@@ -129,6 +132,7 @@ async function generateOutline(topic: string, duration: string, language: string
       }`;
     }
 
+    const openai = getOpenAIClient();
     const response = await openai.chat.completions.create({
       model: "gpt-4o",
       messages: [

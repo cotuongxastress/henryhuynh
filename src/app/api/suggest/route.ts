@@ -1,14 +1,17 @@
 import { NextRequest, NextResponse } from 'next/server';
 import OpenAI from 'openai';
 
-// Initialize OpenAI client
-const openai = new OpenAI({
-  apiKey: process.env.OPENAI_API_KEY // Will be configured in environment variables
-});
+// Create the OpenAI client lazily, inside the request handler, so that
+// importing this route at build time does not require OPENAI_API_KEY.
+function getOpenAIClient() {
+  return new OpenAI({
+    apiKey: process.env.OPENAI_API_KEY, // Configured via environment variables
+  });
+}
 
 export async function POST(request: NextRequest) {
   try {
-    const body = await request.json();
+    const body = (await request.json()) as { category?: string; language?: string };
     const { category, language } = body;
     
     if (!category) {
@@ -43,6 +46,7 @@ async function generateSuggestions(category: string, language: string) {
       prompt = `Generate 5 YouTube video topic ideas for the category "${category}" that have high potential to go viral. For each topic, provide a catchy title and a brief description of what the video would cover. Format the response as a JSON array of objects with "title" and "description" fields.`;
     }
 
+    const openai = getOpenAIClient();
     const response = await openai.chat.completions.create({
       model: "gpt-4o",
       messages: [

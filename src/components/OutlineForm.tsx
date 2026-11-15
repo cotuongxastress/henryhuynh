@@ -57,7 +57,7 @@ export default function OutlineForm({ dictionary, locale, initialTopic = '' }: O
         throw new Error('Failed to generate outline');
       }
       
-      const data = await response.json();
+      const data = (await response.json()) as { outline: Outline };
       setOutline(data.outline);
     } catch (err) {
       console.error('Error generating outline:', err);

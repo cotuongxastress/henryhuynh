@@ -63,7 +63,7 @@ export default function SuggestionForm({ dictionary, locale }: SuggestionFormPro
         throw new Error('Failed to generate suggestions');
       }
       
-      const data = await response.json();
+      const data = (await response.json()) as { suggestions: Suggestion[] };
       setSuggestions(data.suggestions);
     } catch (err) {
       console.error('Error generating suggestions:', err);

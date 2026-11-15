@@ -66,10 +66,12 @@ export default function TrendsComponent({ dictionary, locale }: TrendsComponentP
         throw new Error('Failed to fetch Google trends');
       }
       
-      const data = await response.json();
-      
+      const data = (await response.json()) as {
+        dailyTrends?: { default?: { trendingSearchesDays?: Array<{ trendingSearches?: GoogleTrend[] }> } };
+      };
+
       // Extract trending searches from the response
-      const trendingSearches = data.dailyTrends?.default?.trendingSearchesDays[0]?.trendingSearches || [];
+      const trendingSearches = data.dailyTrends?.default?.trendingSearchesDays?.[0]?.trendingSearches || [];
       setGoogleTrends(trendingSearches);
     } catch (err) {
       console.error('Error fetching Google trends:', err);
@@ -98,7 +100,7 @@ export default function TrendsComponent({ dictionary, locale }: TrendsComponentP
         throw new Error('Failed to fetch YouTube trends');
       }
       
-      const data = await response.json();
+      const data = (await response.json()) as { trendingVideos?: YouTubeTrend[] };
       setYoutubeTrends(data.trendingVideos || []);
     } catch (err) {
       console.error('Error fetching YouTube trends:', err);

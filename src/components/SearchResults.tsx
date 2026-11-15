@@ -65,7 +65,7 @@ export default function SearchResults({ dictionary, locale }: SearchResultsProps
           throw new Error('Search failed');
         }
         
-        const data = await response.json();
+        const data = (await response.json()) as SearchResponse;
         setResults(data);
       } catch (err) {
         console.error('Search error:', err);
