@@ -1,0 +1,401 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Flow Cookie Tool</title>
+<style>
+  :root {
+    --bg: #0a0e17;
+    --card: #141b2b;
+    --card2: #1c2638;
+    --border: #2a3650;
+    --text: #e7ecf5;
+    --muted: #9aa7bd;
+    --blue: #3b82f6;
+    --blue-h: #2f6fe0;
+    --green: #22c55e;
+    --purple: #a855f7;
+    --orange: #f97316;
+    --yellow-bg: #241c08;
+    --yellow-bd: #7a5c12;
+    --yellow-tx: #fcd34d;
+    --red-bg: #2a1113;
+    --red-bd: #7f1d22;
+    --red-tx: #fca5a5;
+    --green-bg: #0c2417;
+    --green-bd: #1f6b40;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--text);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    line-height: 1.5;
+  }
+  .wrap { max-width: 900px; margin: 0 auto; padding: 24px 16px 60px; }
+  header h1 { font-size: 1.5rem; margin: 0 0 4px; }
+  header p { color: var(--muted); margin: 0 0 20px; font-size: 0.9rem; }
+  .card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 20px;
+    margin-bottom: 20px;
+  }
+  h2 { font-size: 1.25rem; margin: 0 0 6px; }
+  .sub { color: var(--muted); font-size: 0.9rem; margin: 0 0 16px; }
+  label { display: block; font-weight: 600; font-size: 0.85rem; margin-bottom: 6px; }
+  textarea, select {
+    width: 100%;
+    background: var(--card2);
+    border: 1px solid var(--border);
+    color: var(--text);
+    border-radius: 8px;
+    padding: 10px 12px;
+    font-size: 0.85rem;
+  }
+  textarea { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; resize: vertical; }
+  .row { display: flex; flex-wrap: wrap; gap: 16px; align-items: flex-end; margin-top: 14px; }
+  select { width: auto; min-width: 180px; }
+  button {
+    border: none;
+    border-radius: 8px;
+    padding: 11px 18px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: #fff;
+    cursor: pointer;
+    transition: background 0.15s;
+  }
+  .btn-blue { background: var(--blue); }
+  .btn-blue:hover { background: var(--blue-h); }
+  .btn-green { background: var(--green); }
+  .btn-purple { background: var(--purple); }
+  .btn-orange { background: var(--orange); }
+  button:hover { filter: brightness(1.08); }
+  .msg { border-radius: 8px; padding: 12px 14px; margin-top: 14px; font-size: 0.85rem; }
+  .msg-red { background: var(--red-bg); border: 1px solid var(--red-bd); color: var(--red-tx); }
+  .status { border-radius: 8px; padding: 14px; border: 1px solid; }
+  .status-ok { background: var(--green-bg); border-color: var(--green-bd); }
+  .status-warn { background: var(--yellow-bg); border-color: var(--yellow-bd); }
+  .status h4 { margin: 0 0 6px; font-size: 1rem; }
+  .status p { margin: 2px 0; font-size: 0.85rem; }
+  .mono { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; }
+  .actions { display: flex; flex-wrap: wrap; gap: 10px; margin: 16px 0; }
+  table { width: 100%; border-collapse: collapse; font-size: 0.78rem; }
+  th, td { text-align: left; padding: 6px 10px 6px 0; border-bottom: 1px solid var(--border); vertical-align: top; }
+  td.mono, th { white-space: nowrap; }
+  td.val { color: var(--muted); word-break: break-all; white-space: normal; }
+  .info { background: #0e1b2e; border: 1px solid #1c3a5e; }
+  .info h4 { margin: 0 0 8px; color: #93c5fd; }
+  .info ol { margin: 0; padding-left: 20px; font-size: 0.85rem; color: #bcd4f0; }
+  .info ol li { margin: 3px 0; }
+  .warn { background: var(--yellow-bg); border: 1px solid var(--yellow-bd); }
+  .warn h4 { margin: 0 0 8px; color: var(--yellow-tx); }
+  .warn ul { margin: 0; padding-left: 20px; font-size: 0.85rem; color: #e8cf8a; }
+  .warn ul li { margin: 3px 0; }
+  .hidden { display: none; }
+  footer { text-align: center; color: var(--muted); font-size: 0.8rem; margin-top: 10px; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <h1>Flow Cookie Tool</h1>
+    <p>Chạy hoàn toàn trên máy bạn — mở file này bằng trình duyệt là dùng được, không cần cài đặt, không gửi dữ liệu đi đâu.</p>
+  </header>
+
+  <div class="card">
+    <h2>Google Flow Cookie Tool</h2>
+    <p class="sub">Dán cookie bạn đã export từ trình duyệt đang đăng nhập <span class="mono">labs.google/fx/vi/tools/flow</span>. Mọi thứ xử lý ngay trong trình duyệt — không cần mật khẩu.</p>
+
+    <label for="input">Cookie đã export</label>
+    <textarea id="input" rows="10" placeholder="Dán vào đây. Hỗ trợ:
+• JSON (Cookie-Editor / EditThisCookie)
+• Netscape cookies.txt (Get cookies.txt / yt-dlp)
+• Chuỗi header:  SID=...; HSID=...; SAPISID=..."></textarea>
+
+    <div class="row">
+      <div>
+        <label for="format">Định dạng</label>
+        <select id="format">
+          <option value="auto">Tự nhận (auto)</option>
+          <option value="json">JSON</option>
+          <option value="netscape">Netscape (cookies.txt)</option>
+          <option value="header">Chuỗi header</option>
+        </select>
+      </div>
+      <button class="btn-blue" id="parseBtn">Parse Cookies</button>
+    </div>
+
+    <div id="error" class="msg msg-red hidden"></div>
+  </div>
+
+  <div id="results" class="card hidden">
+    <h2>Kết quả</h2>
+    <div id="status" class="status"></div>
+    <div class="actions">
+      <button class="btn-green" id="copyBtn">Copy header string</button>
+      <button class="btn-purple" id="jsonBtn">Tải JSON</button>
+      <button class="btn-orange" id="txtBtn">Tải cookies.txt</button>
+    </div>
+    <div style="overflow-x:auto">
+      <table>
+        <thead><tr><th>Name</th><th>Domain</th><th>Secure</th><th>Value</th></tr></thead>
+        <tbody id="tbody"></tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="card info">
+    <h4>Cách export cookie</h4>
+    <ol>
+      <li>Đăng nhập <span class="mono">labs.google/fx/vi/tools/flow</span> trên trình duyệt thường.</li>
+      <li>Cài extension export cookie, ví dụ “Cookie-Editor” hoặc “Get cookies.txt LOCALLY”.</li>
+      <li>Ở tab Flow, mở extension và Export (JSON hoặc cookies.txt) cho google.com.</li>
+      <li>Dán nội dung vào ô trên và bấm “Parse Cookies”.</li>
+    </ol>
+  </div>
+
+  <div class="card warn">
+    <h4>⚠️ Cẩn trọng</h4>
+    <ul>
+      <li>Cookie này cho phép truy cập tài khoản Google của bạn — coi như mật khẩu.</li>
+      <li>Việc parse diễn ra ngay trong trình duyệt, không có gì được tải lên.</li>
+      <li>Đừng dán cookie vào trang/tool bạn không tin tưởng.</li>
+      <li>Đăng xuất / xoá phiên để vô hiệu hoá cookie đã export khi dùng xong.</li>
+    </ul>
+  </div>
+
+  <footer>Flow Cookie Tool — chạy offline, một file duy nhất.</footer>
+</div>
+
+<script>
+"use strict";
+
+var GOOGLE_AUTH_COOKIE_NAMES = [
+  "SID", "HSID", "SSID", "APISID", "SAPISID",
+  "__Secure-1PSID", "__Secure-3PSID", "__Secure-1PAPISID", "__Secure-3PAPISID"
+];
+
+function detectFormat(raw) {
+  var t = raw.trim();
+  if (!t) return "header";
+  if (t[0] === "[" || t[0] === "{") return "json";
+  if (/^#.*netscape/i.test(t) || t.indexOf("\t") !== -1) return "netscape";
+  return "header";
+}
+
+function toUnixSeconds(v) {
+  if (v === undefined || v === null || v === "") return undefined;
+  var n = typeof v === "number" ? v : Number(v);
+  if (!isFinite(n)) return undefined;
+  return n > 1e12 ? Math.floor(n / 1000) : Math.floor(n);
+}
+
+function parseJsonCookies(raw) {
+  var data = JSON.parse(raw);
+  var list;
+  if (Array.isArray(data)) list = data;
+  else if (data && Array.isArray(data.cookies)) list = data.cookies;
+  else list = [data];
+  return list.map(function (c) {
+    return {
+      name: String(c.name == null ? "" : c.name),
+      value: String(c.value == null ? "" : c.value),
+      domain: String(c.domain == null ? "" : c.domain),
+      path: String(c.path == null ? "/" : c.path),
+      secure: Boolean(c.secure),
+      httpOnly: Boolean(c.httpOnly || c.httponly),
+      expires: toUnixSeconds(c.expires != null ? c.expires : (c.expirationDate != null ? c.expirationDate : c.expiry))
+    };
+  }).filter(function (c) { return c.name; });
+}
+
+function parseNetscapeCookies(raw) {
+  var out = [];
+  var lines = raw.split(/\r?\n/);
+  for (var i = 0; i < lines.length; i++) {
+    var line = lines[i];
+    var httpOnly = false;
+    if (!line.trim()) continue;
+    if (line.charAt(0) === "#") {
+      if (/^#HttpOnly_/i.test(line)) { httpOnly = true; line = line.replace(/^#HttpOnly_/i, ""); }
+      else continue;
+    }
+    var parts = line.split("\t");
+    if (parts.length < 7) continue;
+    var name = parts[5];
+    if (!name) continue;
+    out.push({
+      name: name,
+      value: parts.slice(6).join("\t"),
+      domain: parts[0],
+      path: parts[2] || "/",
+      secure: String(parts[3]).toUpperCase() === "TRUE",
+      httpOnly: httpOnly,
+      expires: toUnixSeconds(parts[4])
+    });
+  }
+  return out;
+}
+
+function parseHeaderCookies(raw, domain) {
+  domain = domain || ".google.com";
+  var out = [];
+  var pairs = raw.split(/;\s*/);
+  for (var i = 0; i < pairs.length; i++) {
+    var idx = pairs[i].indexOf("=");
+    if (idx === -1) continue;
+    var name = pairs[i].slice(0, idx).trim();
+    var value = pairs[i].slice(idx + 1).trim();
+    if (!name) continue;
+    out.push({ name: name, value: value, domain: domain, path: "/", secure: true, httpOnly: false });
+  }
+  return out;
+}
+
+function parseCookies(raw, format) {
+  var fmt = (!format || format === "auto") ? detectFormat(raw) : format;
+  if (fmt === "json") return parseJsonCookies(raw);
+  if (fmt === "netscape") return parseNetscapeCookies(raw);
+  return parseHeaderCookies(raw);
+}
+
+function toHeaderString(cookies) {
+  return cookies.map(function (c) { return c.name + "=" + c.value; }).join("; ");
+}
+function toJson(cookies) { return JSON.stringify(cookies, null, 2); }
+function toNetscape(cookies) {
+  var out = "# Netscape HTTP Cookie File\n";
+  cookies.forEach(function (c) {
+    var line = [
+      c.domain,
+      c.domain.charAt(0) === "." ? "TRUE" : "FALSE",
+      c.path || "/",
+      c.secure ? "TRUE" : "FALSE",
+      String(c.expires == null ? 0 : c.expires),
+      c.name,
+      c.value
+    ].join("\t");
+    out += (c.httpOnly ? "#HttpOnly_" : "") + line + "\n";
+  });
+  return out;
+}
+
+function checkGoogleAuth(cookies) {
+  var names = {};
+  cookies.forEach(function (c) { names[c.name] = true; });
+  var found = GOOGLE_AUTH_COOKIE_NAMES.filter(function (n) { return names[n]; });
+  var hasAuth = found.some(function (n) { return n === "SID" || n.indexOf("PSID") !== -1; });
+  return { hasAuth: hasAuth, found: found };
+}
+
+function filterGoogle(cookies) {
+  return cookies.filter(function (c) { return !c.domain || c.domain.toLowerCase().indexOf("google") !== -1; });
+}
+
+// ---- UI wiring ----
+var current = null;
+
+function esc(s) {
+  return String(s).replace(/[&<>"]/g, function (c) {
+    return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c];
+  });
+}
+
+function showError(msg) {
+  var e = document.getElementById("error");
+  e.textContent = msg;
+  e.classList.remove("hidden");
+  document.getElementById("results").classList.add("hidden");
+}
+
+function download(content, filename, type) {
+  var blob = new Blob([content], { type: type });
+  var url = URL.createObjectURL(blob);
+  var a = document.createElement("a");
+  a.href = url; a.download = filename;
+  document.body.appendChild(a); a.click();
+  document.body.removeChild(a);
+  setTimeout(function () { URL.revokeObjectURL(url); }, 1000);
+}
+
+function exportSet() {
+  if (!current) return [];
+  return current.google.length ? current.google : current.all;
+}
+
+function copyHeader() {
+  var text = toHeaderString(exportSet());
+  if (navigator.clipboard && navigator.clipboard.writeText) {
+    navigator.clipboard.writeText(text).then(
+      function () { alert("Đã copy header string!"); },
+      function () { fallbackCopy(text); }
+    );
+  } else {
+    fallbackCopy(text);
+  }
+}
+function fallbackCopy(text) {
+  var ta = document.createElement("textarea");
+  ta.value = text; ta.style.position = "fixed"; ta.style.opacity = "0";
+  document.body.appendChild(ta); ta.select();
+  try { document.execCommand("copy"); alert("Đã copy header string!"); }
+  catch (e) { alert("Không copy tự động được. Hãy copy thủ công:\n\n" + text); }
+  document.body.removeChild(ta);
+}
+
+function render() {
+  var all = current.all, google = current.google, auth = current.auth;
+  var results = document.getElementById("results");
+  var status = document.getElementById("status");
+
+  status.className = "status " + (auth.hasAuth ? "status-ok" : "status-warn");
+  var html = "<h4>" + (auth.hasAuth ? "✅ Phát hiện phiên Google đã đăng nhập" : "⚠️ Không thấy cookie đăng nhập Google") + "</h4>";
+  html += "<p>Định dạng nhận được: <strong>" + esc(current.fmt) + "</strong> · Tổng cookie: <strong>" + all.length + "</strong> · Cookie Google: <strong>" + google.length + "</strong></p>";
+  if (auth.found.length) html += "<p>Cookie xác thực: <span class='mono'>" + esc(auth.found.join(", ")) + "</span></p>";
+  if (!auth.hasAuth) html += "<p>Thiếu cookie họ SID (vd <span class='mono'>SID</span>, <span class='mono'>__Secure-1PSID</span>). Hãy export lại khi đang đăng nhập Google và bao gồm toàn bộ cookie google.com.</p>";
+  status.innerHTML = html;
+
+  var tbody = document.getElementById("tbody");
+  tbody.innerHTML = all.map(function (c) {
+    var v = c.value.length > 28 ? c.value.slice(0, 28) + "…" : c.value;
+    return "<tr><td class='mono'>" + esc(c.name) + "</td><td class='mono'>" + esc(c.domain || "—") +
+           "</td><td>" + (c.secure ? "yes" : "no") + "</td><td class='val mono'>" + esc(v) + "</td></tr>";
+  }).join("");
+
+  document.getElementById("error").classList.add("hidden");
+  results.classList.remove("hidden");
+}
+
+function doParse() {
+  var raw = document.getElementById("input").value;
+  var fmt = document.getElementById("format").value;
+  if (!raw.trim()) { showError("Hãy dán cookie đã export trước."); return; }
+  var cookies;
+  try { cookies = parseCookies(raw, fmt); }
+  catch (e) { showError("Không parse được: " + (e && e.message ? e.message : "kiểm tra lại định dạng.")); return; }
+  if (!cookies.length) { showError("Không đọc được cookie nào. Kiểm tra định dạng hoặc thử định dạng khác."); return; }
+  current = {
+    all: cookies,
+    google: filterGoogle(cookies),
+    auth: checkGoogleAuth(cookies),
+    fmt: (fmt === "auto" ? detectFormat(raw) : fmt)
+  };
+  render();
+}
+
+document.getElementById("parseBtn").addEventListener("click", doParse);
+document.getElementById("copyBtn").addEventListener("click", copyHeader);
+document.getElementById("jsonBtn").addEventListener("click", function () {
+  download(toJson(current.all), "flow-cookies-" + Date.now() + ".json", "application/json");
+});
+document.getElementById("txtBtn").addEventListener("click", function () {
+  download(toNetscape(current.all), "flow-cookies-" + Date.now() + ".txt", "text/plain");
+});
+</script>
+</body>
+</html>
