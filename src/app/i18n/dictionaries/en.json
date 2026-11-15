@@ -1,0 +1,61 @@
+{
+  "common": {
+    "appName": "YouTube Niche Finder",
+    "search": "Search",
+    "suggest": "Suggest",
+    "trends": "Trends",
+    "outline": "Video Outline",
+    "language": "Language"
+  },
+  "home": {
+    "title": "Find Your YouTube Niche",
+    "subtitle": "Discover trending topics, get AI suggestions, and create video outlines",
+    "searchPlaceholder": "Enter keywords to find a niche",
+    "orText": "or",
+    "suggestButton": "Get AI Suggestions",
+    "trendingTopics": "Trending Topics",
+    "recentSearches": "Recent Searches"
+  },
+  "search": {
+    "title": "Search Results",
+    "noResults": "No results found",
+    "searchAgain": "Try different keywords",
+    "relatedTopics": "Related Topics",
+    "createOutline": "Create Video Outline"
+  },
+  "suggest": {
+    "title": "AI Suggestions",
+    "loading": "Generating suggestions...",
+    "categoryLabel": "Select a category",
+    "generateButton": "Generate Suggestions",
+    "regenerateButton": "Regenerate",
+    "saveButton": "Save",
+    "exploreButton": "Explore Trends"
+  },
+  "trends": {
+    "title": "Trending Topics",
+    "googleTrends": "Google Trends",
+    "youtubeTrends": "YouTube Trends",
+    "dailyTrends": "Daily Trends",
+    "weeklyTrends": "Weekly Trends",
+    "monthlyTrends": "Monthly Trends",
+    "relatedQueries": "Related Queries",
+    "risingTopics": "Rising Topics"
+  },
+  "outline": {
+    "title": "Video Outline Generator",
+    "durationLabel": "Video Duration",
+    "languageLabel": "Content Language",
+    "shortOption": "Short (< 5 min)",
+    "mediumOption": "Medium (5-15 min)",
+    "longOption": "Long (> 15 min)",
+    "topicLabel": "Topic",
+    "generateButton": "Generate Outline",
+    "regenerateButton": "Regenerate",
+    "saveButton": "Save Outline",
+    "copyButton": "Copy to Clipboard",
+    "introduction": "Introduction",
+    "mainContent": "Main Content",
+    "conclusion": "Conclusion"
+  }
+}

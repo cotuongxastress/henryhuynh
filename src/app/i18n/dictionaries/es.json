@@ -1,0 +1,61 @@
+{
+  "common": {
+    "appName": "Buscador de Nichos de YouTube",
+    "search": "Buscar",
+    "suggest": "Sugerir",
+    "trends": "Tendencias",
+    "outline": "Esquema de Video",
+    "language": "Idioma"
+  },
+  "home": {
+    "title": "Encuentra Tu Nicho en YouTube",
+    "subtitle": "Descubre temas tendencia, obtén sugerencias de IA y crea esquemas de video",
+    "searchPlaceholder": "Ingresa palabras clave para encontrar un nicho",
+    "orText": "o",
+    "suggestButton": "Obtener Sugerencias de IA",
+    "trendingTopics": "Temas Tendencia",
+    "recentSearches": "Búsquedas Recientes"
+  },
+  "search": {
+    "title": "Resultados de Búsqueda",
+    "noResults": "No se encontraron resultados",
+    "searchAgain": "Intenta con palabras clave diferentes",
+    "relatedTopics": "Temas Relacionados",
+    "createOutline": "Crear Esquema de Video"
+  },
+  "suggest": {
+    "title": "Sugerencias de IA",
+    "loading": "Generando sugerencias...",
+    "categoryLabel": "Selecciona una categoría",
+    "generateButton": "Generar Sugerencias",
+    "regenerateButton": "Regenerar",
+    "saveButton": "Guardar",
+    "exploreButton": "Explorar Tendencias"
+  },
+  "trends": {
+    "title": "Temas Tendencia",
+    "googleTrends": "Tendencias de Google",
+    "youtubeTrends": "Tendencias de YouTube",
+    "dailyTrends": "Tendencias Diarias",
+    "weeklyTrends": "Tendencias Semanales",
+    "monthlyTrends": "Tendencias Mensuales",
+    "relatedQueries": "Consultas Relacionadas",
+    "risingTopics": "Temas en Ascenso"
+  },
+  "outline": {
+    "title": "Generador de Esquemas de Video",
+    "durationLabel": "Duración del Video",
+    "languageLabel": "Idioma del Contenido",
+    "shortOption": "Corto (< 5 min)",
+    "mediumOption": "Medio (5-15 min)",
+    "longOption": "Largo (> 15 min)",
+    "topicLabel": "Tema",
+    "generateButton": "Generar Esquema",
+    "regenerateButton": "Regenerar",
+    "saveButton": "Guardar Esquema",
+    "copyButton": "Copiar al Portapapeles",
+    "introduction": "Introducción",
+    "mainContent": "Contenido Principal",
+    "conclusion": "Conclusión"
+  }
+}
