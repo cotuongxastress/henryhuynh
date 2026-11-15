@@ -2,6 +2,6 @@ import { createGetDictionary } from './dictionaries';
 import { Locale, defaultLocale } from './settings';
 
 export async function getDictionary(locale: Locale = defaultLocale) {
-  const getDictionary = createGetDictionary();
+  const getDictionary = await createGetDictionary();
   return getDictionary(locale);
 }

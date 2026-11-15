@@ -8,10 +8,11 @@ export const metadata = {
 };
 
 export default async function GoogleFlowCookiesPage({
-  params: { locale },
+  params,
 }: {
-  params: { locale: Locale };
+  params: Promise<{ locale: Locale }>;
 }) {
+  const { locale } = await params;
   const dictionary = await getDictionary(locale);
 
   return (

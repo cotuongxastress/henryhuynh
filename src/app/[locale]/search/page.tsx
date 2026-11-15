@@ -3,14 +3,16 @@ import { Locale } from '../../../app/i18n/settings';
 import SearchResults from '@/components/SearchResults';
 
 export default async function SearchPage({
-  params: { locale },
+  params,
   searchParams
 }: {
-  params: { locale: Locale };
-  searchParams: { q: string };
+  params: Promise<{ locale: Locale }>;
+  searchParams: Promise<{ q: string }>;
 }) {
+  const { locale } = await params;
+  const { q } = await searchParams;
   const dictionary = await getDictionary(locale);
-  const query = searchParams.q || '';
+  const query = q || '';
 
   return (
     <div className="max-w-4xl mx-auto">

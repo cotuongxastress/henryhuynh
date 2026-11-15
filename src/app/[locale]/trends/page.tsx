@@ -3,10 +3,11 @@ import { Locale } from '../../../app/i18n/settings';
 import TrendsComponent from '@/components/TrendsComponent';
 
 export default async function TrendsPage({
-  params: { locale }
+  params
 }: {
-  params: { locale: Locale };
+  params: Promise<{ locale: Locale }>;
 }) {
+  const { locale } = await params;
   const dictionary = await getDictionary(locale);
 
   return (

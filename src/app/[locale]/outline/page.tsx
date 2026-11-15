@@ -3,14 +3,16 @@ import { Locale } from '../../../app/i18n/settings';
 import OutlineForm from '@/components/OutlineForm';
 
 export default async function OutlinePage({
-  params: { locale },
+  params,
   searchParams
 }: {
-  params: { locale: Locale };
-  searchParams: { topic?: string };
+  params: Promise<{ locale: Locale }>;
+  searchParams: Promise<{ topic?: string }>;
 }) {
+  const { locale } = await params;
+  const { topic } = await searchParams;
   const dictionary = await getDictionary(locale);
-  const initialTopic = searchParams.topic || '';
+  const initialTopic = topic || '';
 
   return (
     <div className="max-w-3xl mx-auto">

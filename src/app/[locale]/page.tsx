@@ -4,10 +4,11 @@ import SearchForm from '@/components/SearchForm';
 import Link from 'next/link';
 
 export default async function HomePage({
-  params: { locale }
+  params
 }: {
-  params: { locale: Locale };
+  params: Promise<{ locale: Locale }>;
 }) {
+  const { locale } = await params;
   const dictionary = await getDictionary(locale);
 
   return (
